@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-08-20T18:41:00Z",
+  "ok": true,
+  "sources": [
+    {
+      "label": "Chase Sapphire Preferred",
+      "ok": true
+    },
+    {
+      "label": "Chase Freedom Unlimited",
+      "ok": true
+    },
+    {
+      "label": "Discover calendar",
+      "ok": true
+    },
+    {
+      "label": "U.S. Bank Altitude Connect",
+      "ok": true
+    },
+    {
+      "label": "Robinhood legal rewards terms",
+      "ok": true
+    },
+    {
+      "label": "Costco payment methods",
+      "ok": true
+    },
+    {
+      "label": "Costco Executive Membership",
+      "ok": true
+    }
+  ],
+  "policy": "HTTPS allowlisted issuer/Costco public URLs only."
+}
