@@ -1,17 +1,424 @@
 {
-  "config": {
-    "github_actions_url": "https://github.com/sandeep-joy/CardWise/actions/workflows/check-card-sources.yml"
+  "as_of": "2026-08-20",
+  "month_label": "August 2026",
+  "cards": {
+    "discover": {
+      "name": "Discover it Cash Back",
+      "network": "Discover",
+      "base": 1.0
+    },
+    "cfu": {
+      "name": "Chase Freedom Unlimited",
+      "network": "Visa",
+      "base": 1.5
+    },
+    "csp": {
+      "name": "Chase Sapphire Preferred",
+      "network": "Visa",
+      "base": 1.0
+    },
+    "usb": {
+      "name": "U.S. Bank Altitude Connect",
+      "network": "Visa",
+      "base": 1.0
+    },
+    "rh": {
+      "name": "Robinhood Gold Card",
+      "network": "Visa",
+      "base": 3.0
+    }
   },
+  "sources": [
+    {
+      "label": "Chase Sapphire Preferred",
+      "url": "https://www.chase.com/sapphire-cards/personal/preferred",
+      "supports": "Current CSP earn categories and benefits."
+    },
+    {
+      "label": "Chase Freedom Unlimited",
+      "url": "https://www.chase.com/personal/credit-cards/freedom/unlimited",
+      "supports": "Current CFU earn categories."
+    },
+    {
+      "label": "Discover calendar",
+      "url": "https://www.discover.com/credit-cards/cash-back/cashback-calendar.html",
+      "supports": "Discover rotating categories and cap."
+    },
+    {
+      "label": "U.S. Bank Altitude Connect",
+      "url": "https://cardrewards.usbank.com/CONNECT-5X_RecipeA/Connect_5X_A.html",
+      "supports": "Altitude Connect earn categories and exclusions."
+    },
+    {
+      "label": "Robinhood legal rewards terms",
+      "url": "https://api.robinhood.com/creditcard/legal/reward-terms",
+      "supports": "Current Robinhood Gold Card reward terms."
+    },
+    {
+      "label": "Costco payment methods",
+      "url": "https://customerservice.costco.com/app/answers/detail/a_id/719/",
+      "supports": "Visa acceptance at U.S. Costco warehouses/gas."
+    },
+    {
+      "label": "Costco Executive Membership",
+      "url": "https://customerservice.costco.com/app/answers/detail/a_id/1205/",
+      "supports": "Executive 2% reward and exclusions."
+    }
+  ],
   "categories": [
-    {"id":"costco_wholesale","name":"Costco Wholesale","options":[{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Visa accepted at U.S. Costco warehouses; strong everyday rate."},{"card":"Chase Freedom Unlimited","rate":1.5,"label":"1.5%","reason":"Visa fallback for warehouse purchases.","chase":true}],"exceptions":["Discover is not accepted at U.S. Costco warehouses.","The Executive reward is separate from card rewards and excludes some purchases."]},
-    {"id":"costco_gas","name":"Costco Gas","options":[{"card":"Chase Sapphire Preferred","rate":3,"label":"Up to 3x","reason":"Gas bonus; actual eligibility depends on merchant coding.","chase":true},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"High-confidence Visa fallback."}],"exceptions":["Altitude Connect accelerated gas rewards exclude wholesale clubs.","Discover is not accepted at U.S. Costco Gas.","Merchant coding can affect gas-category bonuses."]},
-    {"id":"dining","name":"Dining","options":[{"card":"Chase Sapphire Preferred","rate":3,"label":"3x","reason":"Dining bonus; Chase wins ties.","chase":true},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Strong general fallback."}]},
-    {"id":"online_grocery","name":"Online groceries","options":[{"card":"Chase Sapphire Preferred","rate":3,"label":"3x","reason":"Eligible online grocery purchases.","chase":true},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Fallback when the merchant is excluded or codes differently."}],"exceptions":["Chase excludes Target, Walmart and wholesale clubs from online grocery."]},
-    {"id":"streaming","name":"Select streaming","options":[{"card":"Chase Sapphire Preferred","rate":3,"label":"3x","reason":"Eligible select streaming services.","chase":true},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Fallback for services outside Chase's eligible list."}]},
-    {"id":"chase_travel","name":"Travel through Chase Travel","options":[{"card":"Chase Sapphire Preferred","rate":5,"label":"5x","reason":"Travel purchased through Chase Travel.","chase":true},{"card":"Chase Freedom Unlimited","rate":5,"label":"5x","reason":"Second Chase portal option.","chase":true}]},
-    {"id":"direct_travel","name":"Direct hotel / eligible travel","options":[{"card":"U.S. Bank Altitude Connect","rate":4,"label":"4x","reason":"Eligible direct travel purchases."},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"General fallback."}],"exceptions":["Issuer category definitions and merchant coding apply."]},
-    {"id":"gas","name":"Gas / EV charging","options":[{"card":"U.S. Bank Altitude Connect","rate":4,"label":"4x","reason":"Eligible gas and EV charging outside wholesale clubs."},{"card":"Chase Sapphire Preferred","rate":3,"label":"3x","reason":"Gas and EV charging fallback.","chase":true}],"exceptions":["Use the separate Costco Gas category for wholesale-club exclusions."]},
-    {"id":"discover_quarterly","name":"Current Discover 5% category","options":[{"card":"Discover it","rate":5,"label":"5%","reason":"Only when activated and below the tracked quarterly cap.","cap":"$1,500 quarterly purchase cap"},{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Fallback if Discover is inactive or capped."},{"card":"Chase Freedom Unlimited","rate":1.5,"label":"1.5%","reason":"Chase fallback.","chase":true}]},
-    {"id":"everything_else","name":"Everything else","options":[{"card":"Robinhood Gold Visa","rate":3,"label":"3%","reason":"Highest general everyday rate."},{"card":"Chase Freedom Unlimited","rate":1.5,"label":"1.5%","reason":"Chase backup option.","chase":true}]}
+    {
+      "id": "general",
+      "label": "General / uncategorized",
+      "ranked": [
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x on eligible purchases."
+        },
+        {
+          "card": "cfu",
+          "rate": 1.5,
+          "confidence": "high",
+          "note": "1.5% on other purchases."
+        }
+      ]
+    },
+    {
+      "id": "dining",
+      "label": "Dining / restaurants",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x dining; Chase wins the tie."
+        },
+        {
+          "card": "cfu",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3% dining."
+        }
+      ]
+    },
+    {
+      "id": "drugstore",
+      "label": "Drugstores",
+      "cap": {
+        "kind": "discover_q3",
+        "text": "Discover: activation required; $1,500 combined Q3 cap."
+      },
+      "ranked": [
+        {
+          "card": "discover",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "Q3 5% category, subject to activation/cap."
+        },
+        {
+          "card": "cfu",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3% drugstores."
+        }
+      ]
+    },
+    {
+      "id": "gas",
+      "label": "Gas station (stand-alone)",
+      "cap": {
+        "kind": "multi",
+        "text": "Discover Q3: $1,500 combined cap. Altitude gas/EV: $1,000/qtr cap."
+      },
+      "ranked": [
+        {
+          "card": "discover",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "Q3 category after activation; cap applies."
+        },
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "high",
+          "note": "4x gas/EV, up to $1,000/qtr; wholesale clubs excluded."
+        },
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible gas stations."
+        }
+      ]
+    },
+    {
+      "id": "costco_wholesale",
+      "label": "Costco Wholesale",
+      "ranked": [
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "Visa accepted; 3x eligible purchases."
+        },
+        {
+          "card": "cfu",
+          "rate": 1.5,
+          "confidence": "high",
+          "note": "Visa accepted; 1.5% base."
+        }
+      ],
+      "side_reward": "+2% Costco Executive Reward on most qualifying merchandise purchases.",
+      "exceptions": [
+        "Discover cannot be used at U.S. Costco warehouses because Costco accepts Visa credit cards.",
+        "Altitude accelerated grocery/gas categories exclude wholesale clubs.",
+        "Executive 2% is separate from card rewards and has exclusions."
+      ]
+    },
+    {
+      "id": "costco_gas",
+      "label": "Costco Gas",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "category-dependent",
+          "note": "3x if Costco Gas posts with an eligible gas-station merchant code; Chase wins the 3% tie."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchases; reliable fallback."
+        },
+        {
+          "card": "cfu",
+          "rate": 1.5,
+          "confidence": "high",
+          "note": "Visa accepted; 1.5% base."
+        }
+      ],
+      "exceptions": [
+        "Costco Gas accepts Visa; Discover cannot be used.",
+        "Costco Executive 2% excludes gasoline.",
+        "Altitude 4x gas/EV excludes wholesale clubs.",
+        "CSP gas bonus depends on merchant category coding."
+      ]
+    },
+    {
+      "id": "grocery",
+      "label": "Grocery store (in person)",
+      "ranked": [
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchases."
+        },
+        {
+          "card": "usb",
+          "rate": 2.0,
+          "confidence": "high",
+          "note": "2x grocery; exclusions apply."
+        }
+      ]
+    },
+    {
+      "id": "online_grocery",
+      "label": "Online grocery",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x online grocery; major exclusions apply."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchases; Chase wins tie."
+        }
+      ]
+    },
+    {
+      "id": "streaming",
+      "label": "Streaming",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible streaming; Chase wins tie."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchases."
+        }
+      ]
+    },
+    {
+      "id": "flight_direct",
+      "label": "Flight booked directly with airline",
+      "cap": {
+        "kind": "discover_q3",
+        "text": "Discover Q3: activation + $1,500 combined cap."
+      },
+      "ranked": [
+        {
+          "card": "discover",
+          "rate": 5.0,
+          "confidence": "medium",
+          "note": "Q3 flight category snapshot; cap applies."
+        },
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "high",
+          "note": "4x eligible travel."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchase."
+        }
+      ]
+    },
+    {
+      "id": "hotel_direct",
+      "label": "Hotel booked directly",
+      "ranked": [
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "high",
+          "note": "4x eligible travel."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchase."
+        }
+      ]
+    },
+    {
+      "id": "travel_other",
+      "label": "Other eligible travel / transit",
+      "ranked": [
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "high",
+          "note": "4x eligible travel."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchase."
+        }
+      ]
+    },
+    {
+      "id": "chase_travel",
+      "label": "Travel through Chase Travel",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "5x Chase Travel; CSP wins Chase travel tie."
+        },
+        {
+          "card": "cfu",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "5% Chase Travel."
+        }
+      ],
+      "exceptions": [
+        "Amounts reimbursed by CSP's hotel credit may not earn points."
+      ]
+    },
+    {
+      "id": "usb_portal",
+      "label": "Prepaid hotel/car via U.S. Bank Travel Center",
+      "ranked": [
+        {
+          "card": "usb",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "5x prepaid hotel/car in the U.S. Bank Travel Center."
+        },
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x eligible purchase."
+        }
+      ]
+    },
+    {
+      "id": "rh_portal",
+      "label": "Robinhood Travel Portal",
+      "ranked": [
+        {
+          "card": "rh",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "Newest legal terms say portal purchases no longer earn an extra multiplier."
+        },
+        {
+          "card": "cfu",
+          "rate": 1.5,
+          "confidence": "high",
+          "note": "CFU base rate outside Chase Travel."
+        }
+      ],
+      "exceptions": [
+        "An older Robinhood support page may still say 5x; this app follows newer legal terms."
+      ]
+    },
+    {
+      "id": "vacation_home",
+      "label": "Vacation home (Airbnb/Vrbo etc.)",
+      "ranked": [
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "category-dependent",
+          "note": "May qualify as 4x travel depending on coding."
+        },
+        {
+          "card": "csp",
+          "rate": 3.0,
+          "confidence": "high",
+          "note": "3x at top vacation-home brands."
+        }
+      ]
+    },
+    {
+      "id": "lyft",
+      "label": "Lyft",
+      "ranked": [
+        {
+          "card": "csp",
+          "rate": 5.0,
+          "confidence": "high",
+          "note": "5x eligible Lyft through Sep. 30, 2027."
+        },
+        {
+          "card": "usb",
+          "rate": 4.0,
+          "confidence": "category-dependent",
+          "note": "May code as travel."
+        }
+      ]
+    }
   ]
 }
