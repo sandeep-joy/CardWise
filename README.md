@@ -7,7 +7,7 @@ Then:
 Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → /(root) → Save.
 
 Your URL will look like:
-https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
+https://sandeep-joy.github.io/CardWise/
 
 ## Enable daily source check
 Settings → Actions → General → Workflow permissions → Read and write permissions → Save.
