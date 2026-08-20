@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220"><title>CardWise</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+</head><body><main class="shell">
+<header class="top"><div><div class="eyebrow">PUBLIC-SOURCE CARD OPTIMIZER</div><h1>CardWise</h1><p id="asof">Loading…</p></div>
+<button id="refreshBtn" class="ghost">Reload latest check</button></header>
+<section class="hero card"><label for="category">What are you buying?</label><select id="category"></select>
+<div class="result-grid">
+<article class="winner"><div class="rank">BEST CARD</div><h2 id="bestName">—</h2><div class="rate" id="bestRate">—</div><p id="bestNote"></p><span id="bestConfidence" class="confidence"></span></article>
+<article class="runner"><div class="rank">SECOND OPTION</div><h3 id="secondName">—</h3><div class="rate small" id="secondRate">—</div><p id="secondNote"></p><span id="secondConfidence" class="confidence"></span></article>
+</div><aside id="capBox" class="alert cap hidden"></aside><aside id="sideReward" class="alert plus hidden"></aside><aside id="exceptionsBox" class="alert exception hidden"></aside>
+</section>
+<section class="card controls"><h3>Personal switches</h3>
+<label class="switchrow"><span>Discover Q3 activated</span><input type="checkbox" id="discoverActivated" checked></label>
+<label><span>Discover Q3 spend toward $1,500 cap</span><div class="money"><span>$</span><input type="number" min="0" max="1500" step="1" id="discoverSpend" value="0"></div></label>
+<label class="switchrow"><span>Costco Executive member</span><input type="checkbox" id="costcoExecutive" checked></label>
+<p class="muted">These settings stay only in your browser. No bank login or account data is used.</p></section>
+<section class="card"><div class="section-head"><h3>Source health</h3><span id="sourceStatus" class="pill">Snapshot</span></div><div id="health"></div>
+<details><summary>Official HTTPS sources</summary><div id="sources"></div></details></section>
+<footer>Merchant-category coding can affect real-world rewards.</footer></main><script src="app.js"></script></body></html>
