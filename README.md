@@ -1,20 +1,16 @@
-# CardWise — GitHub Pages
+# CardWise for GitHub Pages
 
-## Deploy
-Upload all files and folders in this package to a GitHub repository.
+Before uploading, edit `data/rules.json` and replace `YOUR-GITHUB-USERNAME` in `config.github_actions_url` with your GitHub username. If your repository is not named `cardwise`, change that part too.
 
-Then:
-Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main → /(root) → Save.
+The source-health panel has two distinct actions:
 
-Your URL will look like:
-https://sandeep-joy.github.io/CardWise/
+- **Reload last GitHub check** downloads the newest published `data/source_health.json` and displays its `checked_at` timestamp.
+- **Run fresh check on GitHub** opens this repository's Actions workflow. Sign in to GitHub, choose **Run workflow**, wait for it to finish and for Pages to publish, then return to CardWise and reload the last check.
 
-## Enable daily source check
-Settings → Actions → General → Workflow permissions → Read and write permissions → Save.
+GitHub Pages is a public static host. It cannot safely call GitHub's authenticated workflow API without exposing a credential. CardWise therefore contains no GitHub token, password or personal access token.
 
-Then:
-Actions → Check official card sources → Run workflow.
+## Publish
 
-The workflow runs daily and checks only allowlisted HTTPS public pages from Chase, Discover, U.S. Bank, Robinhood, and Costco.
+Upload everything in this folder to the repository root, including `.github`. In **Settings → Pages**, publish from `main` and `/ (root)`. The workflow has explicit `contents: write` permission; if repository policy blocks it, enable read/write workflow permissions under **Settings → Actions → General**.
 
-No bank login, Plaid, card number, or transaction history is used.
+The PWA continues to cache the app shell and rules for offline use. The health JSON is intentionally network-first so the reload button can obtain the newest published result.
